@@ -1,0 +1,23 @@
+{
+  "name": "proshop",
+  "version": "1.0.0",
+  "description": "eCommerce application built with the MERN stack",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --watch backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benmhara/e-commerce-proshop.git"
+  },
+  "author": "Mohamed Malek Ben Mhara",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/benmhara/e-commerce-proshop/issues"
+  },
+  "homepage": "https://github.com/benmhara/e-commerce-proshop#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
