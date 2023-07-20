@@ -1,4 +1,5 @@
-import { Link, useParams } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useGetProductQuery } from '../slices/productsApiSlice'
 import {
   Col,
@@ -12,9 +13,23 @@ import {
 import Rating from '../components/Rating'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
+import InputNumber from '../components/InputNumber'
+import { addToCart } from '../slices/cartSlice'
+import { useDispatch } from 'react-redux'
 
 const ProductScreen = () => {
   const { id } = useParams()
+
+  const [qty, setQty] = useState(1)
+
+  // dispatch cart action using redux thunk middleware and react hooks for state management of the app
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const addToCardHandler = () => {
+    dispatch(addToCart({ ...product, qty }))
+    navigate('/cart')
+  }
+
   const { data: product, isLoading, error } = useGetProductQuery(id)
 
   return (
@@ -69,11 +84,24 @@ const ProductScreen = () => {
                       </Col>
                     </Row>
                   </ListGroup.Item>
+                  {product.countInStock > 0 && (
+                    <ListGroup.Item>
+                      <Row>
+                        <Col>Quantity</Col>
+                        <InputNumber
+                          max={product.countInStock}
+                          value={qty}
+                          onChange={e => setQty(+e.target.value)}
+                        />
+                      </Row>
+                    </ListGroup.Item>
+                  )}
                   <ListGroup.Item>
                     <Button
                       className="btn-block"
                       type="button"
                       disabled={product.countInStock === 0}
+                      onClick={addToCardHandler}
                     >
                       Add to Cart
                     </Button>
