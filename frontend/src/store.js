@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { apiSlice } from './slices/apiSlice'
 import cartSliceReducer from './slices/cartSlice'
 
-console.log(apiSlice)
+//console.log(apiSlice)
 
 const store = configureStore({
   reducer: {
