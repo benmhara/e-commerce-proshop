@@ -32,7 +32,7 @@ const ProductEditScreen = () => {
   const [updateProduct, { isLoading: loadingUpdate }] =
     useUpdateProductMutation()
 
-  const [uploadProductImage, { isLoading: loadingUpload, error: errorUpload }] =
+  const [uploadProductImage, { isLoading: loadingUpload }] =
     useUploadProductImageMutation()
 
   const navigate = useNavigate()
